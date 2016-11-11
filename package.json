@@ -1,0 +1,10 @@
+{
+  "name": "gwt-pwa-demo",
+  "version": "1.0.0",
+  "description": "gwt-pwa-demo, npm dependenciesr",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/vaadin/gwt-polymer-elements.git",
+  "devDependencies": {
+    "sw-precache": "^4.2.1"
+  }
+}

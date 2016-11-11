@@ -1,0 +1,8 @@
+{
+  "name": "gwt-pwa-demo",
+  "description": "gwt-pwa-demo bower dependencies to include in jar",
+  "main": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+  }
+}
