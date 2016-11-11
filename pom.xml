@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <name>MyApp GWT PWA project</name>
     <groupId>org.gwtconf</groupId>
     <artifactId>myapp</artifactId>
     <packaging>war</packaging>
@@ -12,7 +13,7 @@
       <gwtVersion>2.8.0</gwtVersion>
       <appModuleBase>com.vaadin.polymer.demo.MyApp</appModuleBase>
       <appModule>${appModuleBase}</appModule>
-      <appName>${project.artifactId}</appName>
+      <appName>MyApp</appName>
       <gwtStyle>OBF</gwtStyle>
       <gwtPolymerVersion>1.7.0.1-SNAPSHOT</gwtPolymerVersion>
       <maven.compiler.target>1.8</maven.compiler.target>
@@ -180,6 +181,27 @@
                   </configuration>
                   <goals>
                     <goal>run</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>gwt-api-generator</id>
+                  <phase>generate-resources</phase>
+                  <configuration>
+                    <target>
+                      <touch file="${project.build.directory}/${project.build.finalName}/service-worker.js"/>
+                      <delete dir="bower_components/polymer" />
+                      <delete dir="bower_components/webcomponentsjs" />
+                      <exec
+                        dir="${project.basedir}"
+                        executable="${basedir}/node/node">
+                        <arg value="${basedir}/node_modules/.bin/gwt-api-generator"/>
+                        <arg value="--excludeLib" />
+                      </exec>
+                    </target>
+                  </configuration>
+                  <goals>
+                    <!-- Enable this if you use 3rd party polymer elements -->
+                    <!-- <goal>run</goal> -->
                   </goals>
                 </execution>
               </executions>

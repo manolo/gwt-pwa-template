@@ -20,7 +20,7 @@
       }
     </style>
 
-    <i:IronAjax ui:field="ajax" url="myapp/users.json"/>
+    <i:IronAjax ui:field="ajax" url="users.json"/>
 
     <v:VaadinGrid ui:field="grid" addStyleNames="fit">
       <table>

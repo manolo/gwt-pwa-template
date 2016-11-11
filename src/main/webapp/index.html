@@ -151,12 +151,14 @@
       </div>
     </div>
     <script>
+      // Load service worker only if supported and https
       if ('serviceWorker' in navigator && /https/.test(window.location.protocol)) {
         navigator.serviceWorker.register('service-worker.js');
       }
     </script>
 
-    <script src="myapp/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="myapp/myapp.nocache.js"></script>
+    <!-- Load Polyfill and GWT after the shell has been rendered and service worker loaded -->
+    <script src="MyApp/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="MyApp/MyApp.nocache.js"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 {
-  "name": "gwt-pwa-demo",
+  "name": "myapp",
   "version": "1.0.0",
-  "description": "gwt-pwa-demo, npm dependenciesr",
+  "description": "npm dependencies for MyApp",
   "license": "Apache-2.0",
-  "repository": "https://github.com/vaadin/gwt-polymer-elements.git",
+  "repository": "https://github.com/manolo/gwt-pwa-template.git",
   "devDependencies": {
     "sw-precache": "^4.2.1"
   }

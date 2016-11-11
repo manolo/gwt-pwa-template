@@ -1,6 +1,6 @@
 {
-  "name": "gwt-pwa-demo",
-  "description": "gwt-pwa-demo bower dependencies to include in jar",
+  "name": "myapp",
+  "description": "bower dependencies to include in the jar",
   "main": "",
   "license": "Apache-2.0",
   "dependencies": {

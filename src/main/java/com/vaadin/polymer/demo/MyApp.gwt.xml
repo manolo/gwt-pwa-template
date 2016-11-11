@@ -1,4 +1,4 @@
-<module rename-to="myapp">
+<module rename-to="MyApp">
     <inherits name="com.google.gwt.user.User"/>
 
     <inherits name="com.google.gwt.query.Query"/>
@@ -6,5 +6,6 @@
     <inherits name="com.vaadin.polymer.Elements"/>
 
     <entry-point class="com.vaadin.polymer.demo.client.Shell"/>
+
     <collapse-all-properties value="true" />
 </module>
