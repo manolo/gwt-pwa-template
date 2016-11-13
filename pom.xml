@@ -211,8 +211,7 @@
               </target>
             </configuration>
             <goals>
-              <!-- Enable this if you use 3rd party polymer elements -->
-              <!-- <goal>run</goal> -->
+              <goal>run</goal>
             </goals>
           </execution>
         </executions>

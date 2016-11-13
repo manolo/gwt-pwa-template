@@ -6,5 +6,8 @@
   "repository": "https://github.com/manolo/gwt-pwa-template.git",
   "devDependencies": {
     "sw-precache": "^4.2.1"
+  },
+  "dependencies": {
+    "gwt-api-generator": "github:vaadin/gwt-api-generator#master"
   }
 }
