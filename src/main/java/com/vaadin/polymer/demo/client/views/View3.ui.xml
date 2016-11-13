@@ -22,6 +22,7 @@
          margin-right: 15px;
       }
     </style>
+
     <p:PaperMaterial elevation="3">
       <form ui:field="form">
         <div class="layout horizontal">
@@ -45,6 +46,7 @@
       </v:VaadinGrid>
     </p:PaperMaterial>
 
-    <p:PaperToast ui:field="toast"></p:PaperToast>
+    <v:VaadinPouchdb dbname='todos' index='date' ui:field="pouchdb" />
+
   </g:HTMLPanel>
 </ui:UiBinder>

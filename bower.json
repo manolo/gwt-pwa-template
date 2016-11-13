@@ -4,6 +4,6 @@
   "main": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "vaadin-pouchdb": "manolo/vaadin-pouchdb#^0.0.3"
+    "vaadin-pouchdb": "manolo/vaadin-pouchdb"
   }
 }
