@@ -54,7 +54,10 @@
         <a:AppHeader>
           <a:AppToolbar>
             <p:PaperIconButton icon="menu" attributes="drawer-toggle"></p:PaperIconButton>
-            <div main-title="" ui:field="title">MyApp</div>
+            <div main-title="" ui:field="title">
+              MyApp
+              <p:PaperBadge icon="flight-takeoff" ui:field="offline" />
+             </div>
           </a:AppToolbar>
         </a:AppHeader>
 

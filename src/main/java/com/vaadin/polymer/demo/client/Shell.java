@@ -18,6 +18,7 @@ import com.vaadin.polymer.demo.client.views.*;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.app.widget.AppDrawer;
 import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
+import com.vaadin.polymer.paper.widget.PaperBadge;
 import com.vaadin.polymer.paper.widget.PaperMenu;
 
 import java.util.Arrays;
@@ -31,6 +32,7 @@ public class Shell extends Composite implements EntryPoint {
   @UiField PaperMenu menu;
   @UiField SimplePanel content;
   @UiField AppDrawer drawer;
+  @UiField PaperBadge offline;
 
   private Widget[] views = new Widget[3];
 
@@ -38,6 +40,10 @@ public class Shell extends Composite implements EntryPoint {
   public void onModuleLoad() {
     // Initialize the UI
     initWidget(shellUi.createAndBindUi(this));
+
+    // Listen for network changes
+    NetworkStatus.onChange(o -> offline.setVisible(!NetworkStatus.isOnLine()));
+    offline.setVisible(!NetworkStatus.isOnLine());
 
     // Check that polyfill has been loaded if needed
     Polymer.whenReady(o1 -> {
