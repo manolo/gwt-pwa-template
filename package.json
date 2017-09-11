@@ -8,6 +8,6 @@
     "sw-precache": "^4.2.1"
   },
   "dependencies": {
-    "gwt-api-generator": "github:vaadin/gwt-api-generator#master"
+    "gwt-api-generator": "github:vaadin/gwt-api-generator#1.9.3"
   }
 }
