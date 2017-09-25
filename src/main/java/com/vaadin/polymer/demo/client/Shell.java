@@ -1,6 +1,7 @@
 package com.vaadin.polymer.demo.client;
 
-import static com.google.gwt.query.client.GQuery.*;
+
+import java.util.Arrays;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.shared.GWT;
@@ -12,16 +13,17 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.vaadin.polymer.demo.client.views.*;
-
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.app.widget.AppDrawer;
+import com.vaadin.polymer.demo.client.views.View1;
+import com.vaadin.polymer.demo.client.views.View2;
+import com.vaadin.polymer.demo.client.views.View3;
 import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
 import com.vaadin.polymer.paper.widget.PaperBadge;
 import com.vaadin.polymer.paper.widget.PaperMenu;
 
-import java.util.Arrays;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.Event;
 
 public class Shell extends Composite implements EntryPoint {
 
@@ -55,8 +57,8 @@ public class Shell extends Composite implements EntryPoint {
         RootPanel.get().add(this);
 
         // FIXME: figure out why Chrome needs this
-        Polymer.Base.async(o2 -> $(window).trigger("resize"), 500);
-        Polymer.Base.async(o2 -> $(window).trigger("resize"), 1000);
+        Polymer.Base.async(o2 -> DomGlobal.window.dispatchEvent(new Event("resize")), 500);
+        Polymer.Base.async(o2 -> DomGlobal.window.dispatchEvent(new Event("resize")), 1000);
 
         return 0;
       });

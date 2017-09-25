@@ -1,21 +1,22 @@
 package com.vaadin.polymer.demo.client.views;
 
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.event.ResponseEvent;
 import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.Row;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
+
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLImageElement;
+import jsinterop.base.Js;
 
 public class View1 extends Composite {
 
@@ -31,16 +32,16 @@ public class View1 extends Composite {
 
      // Image renderer
      grid.ready(o -> {
-       Column column = grid.getColumns().get(0).cast();
+       Column column = Js.cast(grid.getColumns().getAt(0));
        column.setRenderer(row -> {
            Row r = (Row)row;
-           Element e = r.getElement().cast();
-           ImageElement img = e.getFirstChild().cast();
+           HTMLElement e = r.getElement();
+           HTMLImageElement img = Js.cast(e.firstChild);
            if (img == null) {
-             img = Document.get().createImageElement();
+             img = Js.cast(DomGlobal.document.createElement("img"));
              e.appendChild(img);
            }
-           img.setSrc(r.getData().toString());
+           img.src = r.getData().toString();
            return 0;
        });
 

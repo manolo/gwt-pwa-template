@@ -1,18 +1,18 @@
 package com.vaadin.polymer.demo.client.views;
 
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronList;
 import com.vaadin.polymer.iron.widget.event.ResponseEvent;
 import com.vaadin.polymer.paper.widget.PaperProgress;
+
+import elemental2.core.Array;
 
 public class View2 extends Composite {
 
@@ -30,7 +30,7 @@ public class View2 extends Composite {
 
   @UiHandler("ajax")
   void onResponse(ResponseEvent e) {
-    list.setItems(Polymer.<JsArray<?>>property(ajax.getLastResponse(), "items"));
+    list.setItems(Polymer.<Array<?>>property(ajax.getLastResponse(), "items"));
     progress.setVisible(false);
   }
 

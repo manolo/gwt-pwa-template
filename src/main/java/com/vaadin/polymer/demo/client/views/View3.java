@@ -1,7 +1,6 @@
 package com.vaadin.polymer.demo.client.views;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.FormElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,9 +18,11 @@ import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 import com.vaadin.polymer.vaadin.widget.VaadinPouchdb;
 import com.vaadin.polymer.vaadin.widget.event.PouchdbConnectEvent;
 
+import elemental2.core.Array;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 
 public class View3 extends Composite {
 
@@ -48,12 +49,13 @@ public class View3 extends Composite {
   public View3() {
     initWidget(viewUi.createAndBindUi(this));
   }
-  
+
   @UiHandler("pouchdb")
   void onConnect(PouchdbConnectEvent e) {
-    JsArray<?> arr = pouchdb.getData();
+    Array<?> arr = pouchdb.getData();
     if (arr == null) {
-      arr = JavaScriptObject.createArray().cast();
+      // TODO: a better e2 way
+      arr = Js.cast(JavaScriptObject.createArray());
       pouchdb.setData(arr);
     }
     grid.setItems(arr);

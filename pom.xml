@@ -15,7 +15,7 @@
     <appModule>${appModuleBase}</appModule>
     <appName>MyApp</appName>
     <gwtStyle>OBF</gwtStyle>
-    <gwtPolymerVersion>1.9.3.0</gwtPolymerVersion>
+    <gwtPolymerVersion>1.9.4.0-SNAPSHOT</gwtPolymerVersion>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
