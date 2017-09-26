@@ -2,23 +2,21 @@ package com.vaadin.polymer.demo.client.views;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.dom.client.FormElement;
-import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.paper.widget.PaperButton;
-import com.vaadin.polymer.paper.widget.PaperInput;
-import com.vaadin.polymer.paper.widget.PaperTextarea;
-import com.vaadin.polymer.vaadin.widget.VaadinDatePicker;
-import com.vaadin.polymer.vaadin.widget.VaadinGrid;
-import com.vaadin.polymer.vaadin.widget.VaadinPouchdb;
-import com.vaadin.polymer.vaadin.widget.event.PouchdbConnectEvent;
+import com.vaadin.polymer.paper.PaperButtonElement;
+import com.vaadin.polymer.paper.PaperInputElement;
+import com.vaadin.polymer.paper.PaperTextareaElement;
+import com.vaadin.polymer.vaadin.VaadinDatePickerElement;
+import com.vaadin.polymer.vaadin.VaadinGridElement;
+import com.vaadin.polymer.vaadin.VaadinPouchdbElement;
 
 import elemental2.core.Array;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLFormElement;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
@@ -33,50 +31,51 @@ public class View3 extends Composite {
     @JsProperty public String description;
   }
 
-  interface View3UiBinder extends UiBinder<HTMLPanel, View3> {
-  }
-
+  public final HTMLDivElement element;
+  interface View3UiBinder extends UiBinder<DivElement, View3> {}
   private static View3UiBinder viewUi = GWT.create(View3UiBinder.class);
 
-  @UiField PaperButton submit;
-  @UiField PaperInput title;
-  @UiField PaperTextarea descr;
-  @UiField VaadinDatePicker date;
-  @UiField VaadinGrid grid;
-  @UiField FormElement form;
-  @UiField VaadinPouchdb pouchdb;
+  @UiField PaperButtonElement submit;
+  @UiField PaperInputElement title;
+  @UiField PaperTextareaElement descr;
+  @UiField VaadinDatePickerElement date;
+  @UiField VaadinGridElement grid;
+  @UiField HTMLFormElement form;
+  @UiField VaadinPouchdbElement pouchdb;
 
   public View3() {
-    initWidget(viewUi.createAndBindUi(this));
-  }
+    element = Js.cast(viewUi.createAndBindUi(this));
+    pouchdb.addEventListener("pouchdb-connect", e -> {
+      Array<?> arr = pouchdb.getData();
+      if (arr == null) {
+        // TODO: a better e2 way
+        arr = Js.cast(JavaScriptObject.createArray());
+        pouchdb.setData(arr);
+      }
+      grid.setItems(arr);
+    });
+    
+    submit.addEventListener("click", e -> {
+      if (date.getValue().isEmpty()) {
+        date.setInvalid(date.getValue().isEmpty());
+        return;
+      }
 
-  @UiHandler("pouchdb")
-  void onConnect(PouchdbConnectEvent e) {
-    Array<?> arr = pouchdb.getData();
-    if (arr == null) {
-      // TODO: a better e2 way
-      arr = Js.cast(JavaScriptObject.createArray());
-      pouchdb.setData(arr);
-    }
-    grid.setItems(arr);
-  }
+      if (title.validate() && descr.validate()) {
+        Todo todo = new Todo();
+        todo.date = date.getValue();
+        todo.title = title.getValue();
+        todo.description = descr.getValue();
+        
+        Polymer.apply(grid, "push", "items", todo);
+        Polymer.apply(pouchdb, "push", "data", todo);
 
-  @UiHandler("submit")
-  void onClick(ClickEvent e) {
-    if (date.getValue().isEmpty()) {
-      date.setInvalid(date.getValue().isEmpty());
-      return;
-    }
-
-    if (title.validate() && descr.validate()) {
-      Todo todo = new Todo();
-      todo.date = date.getValue();
-      todo.title = title.getValue();
-      todo.description = descr.getValue();
-      Polymer.apply(grid.getElement(), "push", "items", todo);
-      Polymer.apply(pouchdb.getElement(), "push", "data", todo);
-      form.reset();
-    }
+        date.setValue("");
+        title.setValue("");
+        descr.setValue("");
+      }
+      
+    });
   }
 
 }

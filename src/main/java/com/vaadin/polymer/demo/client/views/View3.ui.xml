@@ -1,15 +1,6 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
-             xmlns:a='urn:import:com.vaadin.polymer.app.widget'
-             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
-             xmlns:v='urn:import:com.vaadin.polymer.vaadin.widget'
-        >
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'>
 
-  <ui:style>
-  </ui:style>
-
-  <g:HTMLPanel addStyleNames="view3">
+  <div class="view3">
     <style>
      .view3 paper-material {
          margin: 20px;
@@ -23,30 +14,30 @@
       }
     </style>
 
-    <p:PaperMaterial elevation="3">
+    <paper-material elevation="3">
       <form ui:field="form">
         <div class="layout horizontal">
-          <v:VaadinDatePicker ui:field="date" label="date" required="true"></v:VaadinDatePicker>
-          <p:PaperInput ui:field="title" label="title" pattern="^.+$" autoValidate="true" required="true" errorMessage="Required"></p:PaperInput>
+          <vaadin-date-picker ui:field="date" label="date" required="true"></vaadin-date-picker>
+          <paper-input ui:field="title" label="title" pattern="^.+$" required="true" error-message="Required"></paper-input>
         </div>
-        <p:PaperTextarea ui:field="descr" label="description"></p:PaperTextarea>
-        <p:PaperButton ui:field="submit" raised="true">Add</p:PaperButton>
+        <paper-textarea ui:field="descr" label="description"></paper-textarea>
+        <paper-button ui:field="submit" raised="true">Add</paper-button>
       </form>
-    </p:PaperMaterial>
+    </paper-material>
 
-    <p:PaperMaterial elevation="2">
+    <paper-material elevation="2">
       <h4>TODOs</h4>
-      <v:VaadinGrid ui:field="grid" attributes="selection-mode:multi">
+      <vaadin-grid ui:field="grid" selection-mode="multi">
         <table>
           <col name="date" width="120" />
           <col name="title" width="130" />
           <col name="description" />
           <thead hidden=""/>
         </table>
-      </v:VaadinGrid>
-    </p:PaperMaterial>
+      </vaadin-grid>
+    </paper-material>
 
-    <v:VaadinPouchdb dbname='todos' index='date' ui:field="pouchdb" />
+    <vaadin-pouchdb dbname='todos' index='date' ui:field="pouchdb" />
 
-  </g:HTMLPanel>
+  </div>
 </ui:UiBinder>

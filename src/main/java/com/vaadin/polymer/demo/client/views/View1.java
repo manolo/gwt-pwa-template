@@ -1,38 +1,37 @@
 package com.vaadin.polymer.demo.client.views;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.iron.widget.IronAjax;
-import com.vaadin.polymer.iron.widget.event.ResponseEvent;
+import com.vaadin.polymer.iron.IronAjaxElement;
 import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.Row;
-import com.vaadin.polymer.vaadin.widget.VaadinGrid;
+import com.vaadin.polymer.vaadin.VaadinGridElement;
 
 import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLImageElement;
 import jsinterop.base.Js;
 
 public class View1 extends Composite {
 
-  interface View1UiBinder extends UiBinder<HTMLPanel, View1> {}
-
+  public final HTMLDivElement element;
+  interface View1UiBinder extends UiBinder<Element, View1> {}
   private static View1UiBinder viewUi = GWT.create(View1UiBinder.class);
 
-  @UiField VaadinGrid grid;
-  @UiField IronAjax ajax;
+  @UiField VaadinGridElement grid;
+  @UiField IronAjaxElement ajax;
 
   public View1() {
-     initWidget(viewUi.createAndBindUi(this));
+     element = Js.cast(viewUi.createAndBindUi(this));
 
-     // Image renderer
-     grid.ready(o -> {
+     grid.then(o -> {
        Column column = Js.cast(grid.getColumns().getAt(0));
+       // Image renderer
        column.setRenderer(row -> {
            Row r = (Row)row;
            HTMLElement e = r.getElement();
@@ -49,10 +48,7 @@ public class View1 extends Composite {
        Polymer.Base.async(o2 -> ajax.generateRequest(), 1000);
        return 0;
      });
-  }
-
-  @UiHandler("ajax")
-  void onResponse(ResponseEvent e) {
-      grid.setItems(ajax.getLastResponse());
+     
+     ajax.addEventListener("response", e -> grid.setItems(ajax.getLastResponse()));
   }
 }

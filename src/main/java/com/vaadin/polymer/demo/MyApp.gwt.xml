@@ -1,11 +1,14 @@
 <module rename-to="MyApp">
 
     <inherits name="com.google.gwt.core.Core"/>
-    <inherits name="com.google.gwt.event.Event"/>
+    <inherits name="com.google.gwt.user.DOM"/>
+
+    <!--  TODO reduce UI -->    
     <inherits name="com.google.gwt.user.UI"/>
+    <inherits name="com.google.gwt.uibinder.UiBinder"/>
+
     <!-- TODO: why is this needed -->
     <inherits name="com.google.gwt.user.RemoteService"/>
-
 
     <inherits name="com.vaadin.polymer.Elements"/>
 

@@ -1,16 +1,7 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
-             xmlns:a='urn:import:com.vaadin.polymer.app.widget'
-             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
-             xmlns:v='urn:import:com.vaadin.polymer.vaadin.widget'
-        >
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'>
 
-  <ui:style>
-  </ui:style>
-
-  <g:HTMLPanel>
-    <!-- GSS does not parse CSS variables -->
+  <div>
+    <!-- GSS does not parse CSS custom variables -->
     <style>
       app-header {
         color: var(--app-primary-color);
@@ -23,47 +14,43 @@
       app-drawer paper-menu {
         background-color: transparent !important;
       }
+
       .content {
         margin-top: 64px;
       }
-      .mright app-header {
-        left: 280px;
-      }
     </style>
 
-    <a:AppDrawerLayout ui:field="app" addStyleNames="fit">
+    <app-drawer-layout ui:field="app" class="fit">
 
-      <a:AppDrawer ui:field="drawer">
-        <a:AppHeaderLayout hasScrollingRegion="true" >
-          <a:AppHeader>
-            <a:AppToolbar>
-            Menu
-            </a:AppToolbar>
-          </a:AppHeader>
+      <app-drawer ui:field="drawer">
+        <app-header-layout has-scrolling-region="true" >
+          <app-header>
+            <app-toolbar>Menu</app-toolbar>
+          </app-header>
 
-          <p:PaperMenu ui:field="menu">
-            <p:PaperItem>User List</p:PaperItem>
-            <p:PaperItem>Videos</p:PaperItem>
-            <p:PaperItem>Todos</p:PaperItem>
-          </p:PaperMenu>
+          <paper-listbox ui:field="menu">
+            <paper-item>User List</paper-item>
+            <paper-item>Videos</paper-item>
+            <paper-item>Todos</paper-item>
+          </paper-listbox>
 
-        </a:AppHeaderLayout>
-      </a:AppDrawer>
+        </app-header-layout>
+      </app-drawer>
 
-      <a:AppHeaderLayout ui:field="main" hasScrollingRegion="false" attributes="fullbleed" addStyleNames="mright">
-        <a:AppHeader>
-          <a:AppToolbar>
-            <p:PaperIconButton icon="menu" attributes="drawer-toggle"></p:PaperIconButton>
+      <app-header-layout ui:field="main" attributes="fullbleed" has-scrolling-region="true" class="fit mright">
+        <app-header>
+          <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle="true"></paper-icon-button>
             <div main-title="" ui:field="title">
               MyApp
-              <p:PaperBadge icon="flight-takeoff" ui:field="offline" />
-             </div>
-          </a:AppToolbar>
-        </a:AppHeader>
+              <paper-badge icon="flight-takeoff" ui:field="offline"></paper-badge>
+            </div>
+          </app-toolbar>
+        </app-header>
 
-        <g:SimplePanel ui:field="content" addStyleNames="content fit layout vertical" />
+        <div ui:field="content" class="content fit layout vertical"></div>
 
-      </a:AppHeaderLayout>
-    </a:AppDrawerLayout>
-  </g:HTMLPanel>
+      </app-header-layout>
+    </app-drawer-layout>
+  </div>
 </ui:UiBinder>

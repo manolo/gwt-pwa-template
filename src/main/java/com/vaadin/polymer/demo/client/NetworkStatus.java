@@ -1,5 +1,6 @@
 package com.vaadin.polymer.demo.client;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import jsinterop.annotations.JsPackage;
@@ -14,11 +15,11 @@ public abstract class NetworkStatus {
   public static native HTMLElement getWindow();
 
   public static void onOffline(EventListener f) {
-    getWindow().addEventListener("offline", f);
+    DomGlobal.window.addEventListener("offline", f);
   }
 
   public static void onOnline(EventListener f) {
-    getWindow().addEventListener("online", f);
+    DomGlobal.window.addEventListener("online", f);
   }
 
   public static void onChange(EventListener f) {

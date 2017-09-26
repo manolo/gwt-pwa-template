@@ -1,15 +1,6 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
-             xmlns:a='urn:import:com.vaadin.polymer.app.widget'
-             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
-             xmlns:v='urn:import:com.vaadin.polymer.vaadin.widget'
-        >
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'>
 
-  <ui:style>
-  </ui:style>
-
-  <g:HTMLPanel addStyleNames="view2">
+  <div class="view2">
     <style>
     .view2 .item {
       margin: 10px;
@@ -25,14 +16,14 @@
       width: 100%;
     }
     </style>
-    <i:IronAjax ui:field="ajax" auto="false"
+    <iron-ajax ui:field="ajax" auto="false"
         url="https://www.googleapis.com/youtube/v3/search"
         params='{"part":"snippet", "q":"progressive web applications", "key": "AIzaSyAuecFZ9xJXbGDkQYWBmYrtzOGJD-iDIgI", "type": "video"}'
-        handleAs="json" />
+        handle-as="json"></iron-ajax>
 
-    <p:PaperProgress ui:field="progress" indeterminate="true"></p:PaperProgress>
+    <paper-progress ui:field="progress" indeterminate="true"></paper-progress>
 
-    <i:IronList ui:field="list" as="item" addStyleNames="fit">
+    <iron-list ui:field="list" as="item" class="fit">
       <template>
         <div>
           <div class="item layout vertical center">
@@ -42,7 +33,7 @@
           </div>
         </div>
       </template>
-    </i:IronList>
+    </iron-list>
 
-  </g:HTMLPanel>
+  </div>
 </ui:UiBinder>
