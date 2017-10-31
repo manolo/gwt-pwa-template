@@ -10,7 +10,7 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <gwtVersion>2.8.1</gwtVersion>
+    <gwtVersion>2.8.2</gwtVersion>
     <appModuleBase>com.vaadin.polymer.demo.MyApp</appModuleBase>
     <appModule>${appModuleBase}</appModule>
     <appName>MyApp</appName>
@@ -96,11 +96,10 @@
       <plugin>
         <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
-        <version>1.0-rc-6</version>
+        <version>1.0-rc-9</version>
         <executions>
           <execution>
             <goals>
-              <goal>import-sources</goal>
               <goal>compile</goal>
             </goals>
           </execution>
